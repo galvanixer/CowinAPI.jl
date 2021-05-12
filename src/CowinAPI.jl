@@ -258,6 +258,42 @@ function calendar_by_district(district_id::Int, date::String)
     end
 end
 
+function calendar_by_district_brief(district_id::Int, date::String)
+    url = calendar_by_district_url(district_id, date)
+    try 
+        str = make_API_call(url)
+        jobj = JSON.Parser.parse(str)
+        datadict = jobj["centers"]
+
+        df = DataFrame(center_id=Int[],
+                       state_name=String[], pin=Int[], name=String[],
+                       date=String[], available_capacity=Float64[], min_age_limit=Int[],
+                       vaccine=String[], district_name=String[])
+                       nrows = size(datadict)[1]
+        for i in 1:nrows 
+            nsessions = size(datadict[i]["sessions"])[1]
+            for isession in 1:nsessions 
+                sessiondata = datadict[i]["sessions"][isession]
+                push!(df.center_id, datadict[i]["center_id"])
+                push!(df.state_name, datadict[i]["state_name"])
+                push!(df.pin, datadict[i]["pincode"])
+                push!(df.name, datadict[i]["name"])
+
+                # sessiondata 
+                push!(df.date, sessiondata["date"])
+                push!(df.available_capacity, sessiondata["available_capacity"])
+                push!(df.min_age_limit, sessiondata["min_age_limit"])
+                push!(df.vaccine, sessiondata["vaccine"])
+                # sessiondata END 
+
+                push!(df.district_name, datadict[i]["district_name"])
+            end 
+        end
+        return df
+    catch e
+        return e
+    end
+end
 # function download_certificate(beneficiary_reference_id::String)
 #     url = download_certificate_url(beneficiary_reference_id)
 #     return url 
