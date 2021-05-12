@@ -7,7 +7,61 @@
 
 This package is a Julia wrapper over Co-WIN Public APIs. This package provides the functionality to find appointment availability using Co-WIN Public API. 
 
+## Installation
 
+```julia 
+pkg> add https://github.com/galvanixer/CowinAPI.jl.git
+```
+
+## Usage 
+
+1. Generating list of states
+
+```julia 
+julia> using CowinAPI
+julia> CowinAPI.get_states()
+37×2 DataFrames.DataFrame
+│ Row │ state_id │ state_name                  │
+│     │ Int64    │ String                      │
+├─────┼──────────┼─────────────────────────────┤
+│ 1   │ 1        │ Andaman and Nicobar Islands │
+│ 2   │ 2        │ Andhra Pradesh              │
+│ 3   │ 3        │ Arunachal Pradesh           │
+│ 4   │ 4        │ Assam                       │
+│ 5   │ 5        │ Bihar                       │
+│ 6   │ 6        │ Chandigarh                  │
+│ 7   │ 7        │ Chhattisgarh                │
+│ 8   │ 8        │ Dadra and Nagar Haveli      │
+
+```
+
+2. Getting a list of districts in a particular state 
+
+3. ```julia 
+   julia> CowinAPI.get_districts("Kerala")
+   14×2 DataFrames.DataFrame
+   │ Row │ district_id │ district_name      │
+   │     │ Int64       │ String             │
+   ├─────┼─────────────┼────────────────────┤
+   │ 1   │ 301         │ Alappuzha          │
+   │ 2   │ 307         │ Ernakulam          │
+   │ 3   │ 306         │ Idukki             │
+   │ 4   │ 297         │ Kannur             │
+   │ 5   │ 295         │ Kasaragod          │
+   │ 6   │ 298         │ Kollam             │
+   │ 7   │ 304         │ Kottayam           │
+   │ 8   │ 305         │ Kozhikode          │
+   │ 9   │ 302         │ Malappuram         │
+   │ 10  │ 308         │ Palakkad           │
+   │ 11  │ 300         │ Pathanamthitta     │
+   │ 12  │ 296         │ Thiruvananthapuram │
+   │ 13  │ 303         │ Thrissur           │
+   │ 14  │ 299         │ Wayanad            │
+   ```
+
+4. 
+
+   
 
 
 
