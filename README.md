@@ -38,25 +38,25 @@ julia> CowinAPI.get_states()
 2. Getting a list of districts in a particular state 
 
 ```julia 
-   julia> CowinAPI.get_districts("Kerala")
-   14×2 DataFrames.DataFrame
-   │ Row │ district_id │ district_name      │
-   │     │ Int64       │ String             │
-   ├─────┼─────────────┼────────────────────┤
-   │ 1   │ 301         │ Alappuzha          │
-   │ 2   │ 307         │ Ernakulam          │
-   │ 3   │ 306         │ Idukki             │
-   │ 4   │ 297         │ Kannur             │
-   │ 5   │ 295         │ Kasaragod          │
-   │ 6   │ 298         │ Kollam             │
-   │ 7   │ 304         │ Kottayam           │
-   │ 8   │ 305         │ Kozhikode          │
-   │ 9   │ 302         │ Malappuram         │
-   │ 10  │ 308         │ Palakkad           │
-   │ 11  │ 300         │ Pathanamthitta     │
-   │ 12  │ 296         │ Thiruvananthapuram │
-   │ 13  │ 303         │ Thrissur           │
-   │ 14  │ 299         │ Wayanad            │
+julia> CowinAPI.get_districts("Kerala")
+14×2 DataFrames.DataFrame
+│ Row │ district_id │ district_name      │
+│     │ Int64       │ String             │
+├─────┼─────────────┼────────────────────┤
+│ 1   │ 301         │ Alappuzha          │
+│ 2   │ 307         │ Ernakulam          │
+│ 3   │ 306         │ Idukki             │
+│ 4   │ 297         │ Kannur             │
+│ 5   │ 295         │ Kasaragod          │
+│ 6   │ 298         │ Kollam             │
+│ 7   │ 304         │ Kottayam           │
+│ 8   │ 305         │ Kozhikode          │
+│ 9   │ 302         │ Malappuram         │
+│ 10  │ 308         │ Palakkad           │
+│ 11  │ 300         │ Pathanamthitta     │
+│ 12  │ 296         │ Thiruvananthapuram │
+│ 13  │ 303         │ Thrissur           │
+│ 14  │ 299         │ Wayanad            │
 ```
 
 3. Get district ID
@@ -67,16 +67,16 @@ julia> CowinAPI.get_district_id("Kerala","Wayanad")
 
 4. Get vaccination sessions by PIN code
 
-```
-   julia> CowinAPI.find_by_pin(585201, "11-05-2021")
-   4×19 DataFrames.DataFrame. Omitted printing of 12 columns
-   │ Row │ block_name │ lat     │ long    │ center_id │ state_name │ min_age_limit │ pin    │
-   │     │ String     │ Float64 │ Float64 │ Int64     │ String     │ Int64         │ Int64  │
-   ├─────┼────────────┼─────────┼─────────┼───────────┼────────────┼───────────────┼────────┤
-   │ 1   │ Shorapur   │ 0.0     │ 0.0     │ 687212    │ Karnataka  │ 45            │ 585201 │
-   │ 2   │ Yadgir     │ 0.0     │ 0.0     │ 660629    │ Karnataka  │ 45            │ 585201 │
-   │ 3   │ Yadgir     │ 16.0    │ 77.0    │ 685569    │ Karnataka  │ 45            │ 585201 │
-   │ 4   │ Yadgir     │ 0.0     │ 0.0     │ 686401    │ Karnataka  │ 45            │ 585201 │
+```julia
+julia> CowinAPI.find_by_pin(585201, "11-05-2021")
+4×19 DataFrames.DataFrame. Omitted printing of 12 columns
+│ Row │ block_name │ lat     │ long    │ center_id │ state_name │ min_age_limit │ pin    │
+│     │ String     │ Float64 │ Float64 │ Int64     │ String     │ Int64         │ Int64  │
+├─────┼────────────┼─────────┼─────────┼───────────┼────────────┼───────────────┼────────┤
+│ 1   │ Shorapur   │ 0.0     │ 0.0     │ 687212    │ Karnataka  │ 45            │ 585201 │
+│ 2   │ Yadgir     │ 0.0     │ 0.0     │ 660629    │ Karnataka  │ 45            │ 585201 │
+│ 3   │ Yadgir     │ 16.0    │ 77.0    │ 685569    │ Karnataka  │ 45            │ 585201 │
+│ 4   │ Yadgir     │ 0.0     │ 0.0     │ 686401    │ Karnataka  │ 45            │ 585201 │
 ```
 
 
