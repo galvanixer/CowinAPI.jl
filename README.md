@@ -37,7 +37,7 @@ julia> CowinAPI.get_states()
 
 2. Getting a list of districts in a particular state 
 
-3. ```julia 
+```julia 
    julia> CowinAPI.get_districts("Kerala")
    14×2 DataFrames.DataFrame
    │ Row │ district_id │ district_name      │
@@ -57,11 +57,30 @@ julia> CowinAPI.get_states()
    │ 12  │ 296         │ Thiruvananthapuram │
    │ 13  │ 303         │ Thrissur           │
    │ 14  │ 299         │ Wayanad            │
+```
+
+3. Get district ID
+```julia
+julia> CowinAPI.get_district_id("Kerala","Wayanad")
+299
+```
+
+4. Get vaccination sessions by PIN
+
+5. ```
+   julia> CowinAPI.find_by_pin(585201, "11-05-2021")
+   4×19 DataFrames.DataFrame. Omitted printing of 11 columns
+   │ Row │ block_name │ lat     │ long    │ center_id │ state_name │ min_age_limit │ pin    │ address                  │
+   │     │ String     │ Float64 │ Float64 │ Int64     │ String     │ Int64         │ Int64  │ String                   │
+   ├─────┼────────────┼─────────┼─────────┼───────────┼────────────┼───────────────┼────────┼──────────────────────────┤
+   │ 1   │ Shorapur   │ 0.0     │ 0.0     │ 687212    │ Karnataka  │ 45            │ 585201 │ KANNALLI SC (Petam)      │
+   │ 2   │ Yadgir     │ 0.0     │ 0.0     │ 660629    │ Karnataka  │ 45            │ 585201 │ AJALAPURA PHC            │
+   │ 3   │ Yadgir     │ 16.0    │ 77.0    │ 685569    │ Karnataka  │ 45            │ 585201 │ MYLAPURA SC (BALICHAKRA) │
+   │ 4   │ Yadgir     │ 0.0     │ 0.0     │ 686401    │ Karnataka  │ 45            │ 585201 │ PUTAPAKA SC (KANDAKURA)  │
    ```
 
-4. 
 
-   
+6. 
 
 
 

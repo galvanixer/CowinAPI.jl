@@ -77,18 +77,6 @@ function get_district_id(state::String, district::String)
     end
 end
 
-function find_by_pin(pin::Int, date::Date)
-    date = formatted_date(date)
-    url = find_by_pin_url(pin, date)
-    try 
-        str = make_API_call(url)
-        jobj = JSON.Parser.parse(str)
-        return jobj
-    catch e
-        return e 
-    end 
-end
-
 function find_by_pin(pin::Int, date::String)
     url = find_by_pin_url(pin, date)
     try 
