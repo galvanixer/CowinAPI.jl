@@ -140,6 +140,15 @@ julia> CowinAPI.calendar_by_district(285, "13-05-2021")
 │ 10   │ Shorapur   │ 15-05-2021 │ 50.0               │ COVAXIN    │ 16.0    │ 76.0    │ 688777    │
 ```
 
+
+
+**TO DO:** 
+
+1. Register package at Julia registry
+2. Write unit tests and enable code coverage
+
+**NOTE:** 
+
 The package is limited by the latency rates of the Co-WIN API. The limitations are as follows:
 
 1. Appointment availability data is cached and may be upto 30 minutes late.
