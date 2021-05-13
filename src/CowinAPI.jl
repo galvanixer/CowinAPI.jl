@@ -160,10 +160,11 @@ function calendar_by_pin(pin::Int, date::String)
         str = make_API_call(url)
         jobj = JSON.Parser.parse(str)
         datadict = jobj["centers"]
-        df = DataFrame(block_name=String[], lat=Float64[], long=Float64[], center_id=Int[],
+        df = DataFrame(block_name=String[], date=String[], available_capacity=Float64[], vaccine=String[], 
+                       lat=Float64[], long=Float64[], center_id=Int[],
                        state_name=String[], pin=Int[], address=String[], name=String[], session_id=String[],
-                       slots=Array{String,1}[], date=String[], available_capacity=Float64[], min_age_limit=Int[],
-                       vaccine=String[], fee_type=String[], district_name=String[], to=String[], from=String[])
+                       slots=Array{String,1}[], min_age_limit=Int[],
+                       fee_type=String[], district_name=String[], to=String[], from=String[])
 
         nrows = size(datadict)[1]
         for i in 1:nrows 
@@ -207,10 +208,11 @@ function calendar_by_district(district_id::Int, date::String)
         jobj = JSON.Parser.parse(str)
         datadict = jobj["centers"]
 
-        df = DataFrame(block_name=String[], lat=Float64[], long=Float64[], center_id=Int[],
+        df = DataFrame(block_name=String[],date=String[], available_capacity=Float64[], vaccine=String[],
+                       lat=Float64[], long=Float64[], center_id=Int[],
                        state_name=String[], pin=Int[], address=String[], name=String[], session_id=String[],
-                       slots=Array{String,1}[], date=String[], available_capacity=Float64[], min_age_limit=Int[],
-                       vaccine=String[], fee_type=String[], district_name=String[], to=String[], from=String[])
+                       slots=Array{String,1}[], min_age_limit=Int[],
+                       fee_type=String[], district_name=String[], to=String[], from=String[])
                        nrows = size(datadict)[1]
         for i in 1:nrows 
             nsessions = size(datadict[i]["sessions"])[1]

@@ -65,24 +65,80 @@ julia> CowinAPI.get_district_id("Kerala","Wayanad")
 299
 ```
 
-4. Get vaccination sessions by PIN
+4. Get vaccination sessions by PIN code
 
-5. ```
+```
    julia> CowinAPI.find_by_pin(585201, "11-05-2021")
-   4×19 DataFrames.DataFrame. Omitted printing of 11 columns
-   │ Row │ block_name │ lat     │ long    │ center_id │ state_name │ min_age_limit │ pin    │ address                  │
-   │     │ String     │ Float64 │ Float64 │ Int64     │ String     │ Int64         │ Int64  │ String                   │
-   ├─────┼────────────┼─────────┼─────────┼───────────┼────────────┼───────────────┼────────┼──────────────────────────┤
-   │ 1   │ Shorapur   │ 0.0     │ 0.0     │ 687212    │ Karnataka  │ 45            │ 585201 │ KANNALLI SC (Petam)      │
-   │ 2   │ Yadgir     │ 0.0     │ 0.0     │ 660629    │ Karnataka  │ 45            │ 585201 │ AJALAPURA PHC            │
-   │ 3   │ Yadgir     │ 16.0    │ 77.0    │ 685569    │ Karnataka  │ 45            │ 585201 │ MYLAPURA SC (BALICHAKRA) │
-   │ 4   │ Yadgir     │ 0.0     │ 0.0     │ 686401    │ Karnataka  │ 45            │ 585201 │ PUTAPAKA SC (KANDAKURA)  │
-   ```
+   4×19 DataFrames.DataFrame. Omitted printing of 12 columns
+   │ Row │ block_name │ lat     │ long    │ center_id │ state_name │ min_age_limit │ pin    │
+   │     │ String     │ Float64 │ Float64 │ Int64     │ String     │ Int64         │ Int64  │
+   ├─────┼────────────┼─────────┼─────────┼───────────┼────────────┼───────────────┼────────┤
+   │ 1   │ Shorapur   │ 0.0     │ 0.0     │ 687212    │ Karnataka  │ 45            │ 585201 │
+   │ 2   │ Yadgir     │ 0.0     │ 0.0     │ 660629    │ Karnataka  │ 45            │ 585201 │
+   │ 3   │ Yadgir     │ 16.0    │ 77.0    │ 685569    │ Karnataka  │ 45            │ 585201 │
+   │ 4   │ Yadgir     │ 0.0     │ 0.0     │ 686401    │ Karnataka  │ 45            │ 585201 │
+```
 
 
-6. 
+5. Get vaccination sessions by district (district_id)
+```julia
+julia> CowinAPI.get_district_id("Karnataka", "Yadgir")
+285
 
+julia> CowinAPI.find_by_district(285, "13-05-2021")
+265×19 DataFrames.DataFrame. Omitted printing of 12 columns
+│ Row │ block_name │ lat     │ long    │ center_id │ state_name │ min_age_limit │ pin    │
+│     │ String     │ Float64 │ Float64 │ Int64     │ String     │ Int64         │ Int64  │
+├─────┼────────────┼─────────┼─────────┼───────────┼────────────┼───────────────┼────────┤
+│ 1   │ Shorapur   │ 16.0    │ 76.0    │ 688777    │ Karnataka  │ 45            │ 585224 │
+│ 2   │ Yadgir     │ 16.0    │ 77.0    │ 685607    │ Karnataka  │ 45            │ 585321 │
+│ 3   │ Shorapur   │ 16.0    │ 76.0    │ 688796    │ Karnataka  │ 45            │ 585224 │
+│ 4   │ Shorapur   │ 16.0    │ 76.0    │ 564521    │ Karnataka  │ 45            │ 585215 │
+│ 5   │ Shorapur   │ 0.0     │ 0.0     │ 685533    │ Karnataka  │ 45            │ 585220 │
+│ 6   │ Shorapur   │ 16.0    │ 76.0    │ 688759    │ Karnataka  │ 45            │ 585215 │
+│ 7   │ Yadgir     │ 0.0     │ 0.0     │ 643886    │ Karnataka  │ 45            │ 585202 │
+│ 8   │ Yadgir     │ 16.0    │ 77.0    │ 685644    │ Karnataka  │ 45            │ 585202 │
+│ 9   │ Yadgir     │ 0.0     │ 0.0     │ 686344    │ Karnataka  │ 45            │ 585202 │
+│ 10  │ Shahapur   │ 0.0     │ 0.0     │ 686541    │ Karnataka  │ 45            │ 585309 │
+```
 
+6. Get vaccination sessions by PIN for 7 days
+```julia
+julia> CowinAPI.calendar_by_pin(585201, "13-05-2021")
+45×18 DataFrames.DataFrame. Omitted printing of 11 columns
+│ Row │ block_name │ date       │ available_capacity │ vaccine    │ lat     │ long    │ center_id │
+│     │ String     │ String     │ Float64            │ String     │ Float64 │ Float64 │ Int64     │
+├─────┼────────────┼────────────┼────────────────────┼────────────┼─────────┼─────────┼───────────┤
+│ 1   │ Yadgir     │ 13-05-2021 │ 50.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 2   │ Yadgir     │ 14-05-2021 │ 50.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 3   │ Yadgir     │ 15-05-2021 │ 50.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 4   │ Yadgir     │ 16-05-2021 │ 50.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 5   │ Yadgir     │ 17-05-2021 │ 49.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 6   │ Yadgir     │ 18-05-2021 │ 50.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 7   │ Yadgir     │ 19-05-2021 │ 50.0               │ COVISHIELD │ 16.0    │ 77.0    │ 685569    │
+│ 8   │ Yadgir     │ 13-05-2021 │ 50.0               │ COVISHIELD │ 0.0     │ 0.0     │ 686401    │
+│ 9   │ Yadgir     │ 14-05-2021 │ 50.0               │ COVISHIELD │ 0.0     │ 0.0     │ 686401    │
+│ 10  │ Yadgir     │ 15-05-2021 │ 50.0               │ COVISHIELD │ 0.0     │ 0.0     │ 686401    │
+```
+
+7. Get vaccination sessions by district for 7 days
+```julia
+julia> CowinAPI.calendar_by_district(285, "13-05-2021")
+2114×18 DataFrames.DataFrame. Omitted printing of 11 columns
+│ Row  │ block_name │ date       │ available_capacity │ vaccine    │ lat     │ long    │ center_id │
+│      │ String     │ String     │ Float64            │ String     │ Float64 │ Float64 │ Int64     │
+├──────┼────────────┼────────────┼────────────────────┼────────────┼─────────┼─────────┼───────────┤
+│ 1    │ Shahapur   │ 13-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 2    │ Shahapur   │ 14-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 3    │ Shahapur   │ 15-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 4    │ Shahapur   │ 16-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 5    │ Shahapur   │ 17-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 6    │ Shahapur   │ 18-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 7    │ Shahapur   │ 19-05-2021 │ 0.0                │ COVISHIELD │ 16.0    │ 76.0    │ 660580    │
+│ 8    │ Shorapur   │ 13-05-2021 │ 50.0               │ COVAXIN    │ 16.0    │ 76.0    │ 688777    │
+│ 9    │ Shorapur   │ 14-05-2021 │ 50.0               │ COVAXIN    │ 16.0    │ 76.0    │ 688777    │
+│ 10   │ Shorapur   │ 15-05-2021 │ 50.0               │ COVAXIN    │ 16.0    │ 76.0    │ 688777    │
+```
 
 The package is limited by the latency rates of the Co-WIN API. The limitations are as follows:
 
