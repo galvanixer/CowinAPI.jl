@@ -4,6 +4,12 @@ using DataFrames, CSV
 using Dates
 include("urls.jl")
 
+export get_state, get_state_ids, get_districts, get_district_id 
+export find_by_pin, find_by_district, calendar_by_pin, calendar_by_district
+export calendar_by_district_brief
+
+export stateID
+
 function make_API_call(url::String)
     try
         response = HTTP.get(url)
@@ -257,7 +263,7 @@ function calendar_by_district_brief(district_id::Int, date::String)
 
         df = DataFrame(center_id=Int[],
                        state_name=String[], pin=Int[], name=String[],
-                       date=String[], available_capacity=Float64[], min_age_limit=Int[],
+                       date=Dates.Date[], available_capacity=Float64[], min_age_limit=Int[],
                        vaccine=String[], district_name=String[])
                        nrows = size(datadict)[1]
         for i in 1:nrows 
@@ -270,7 +276,7 @@ function calendar_by_district_brief(district_id::Int, date::String)
                 push!(df.name, datadict[i]["name"])
 
                 # sessiondata 
-                push!(df.date, sessiondata["date"])
+                push!(df.date, Date(sessiondata["date"],"dd-mm-yyyy"))
                 push!(df.available_capacity, sessiondata["available_capacity"])
                 push!(df.min_age_limit, sessiondata["min_age_limit"])
                 push!(df.vaccine, sessiondata["vaccine"])
