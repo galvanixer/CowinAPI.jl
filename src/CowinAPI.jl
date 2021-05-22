@@ -214,7 +214,8 @@ function calendar_by_district(district_id::Int, date::String)
         jobj = JSON.Parser.parse(str)
         datadict = jobj["centers"]
 
-        df = DataFrame(block_name=String[],date=String[], available_capacity=Float64[], vaccine=String[],
+        df = DataFrame(block_name=String[],date=String[], available_capacity=Float64[], available_capacity_dose1=Float64[], 
+                       available_capacity_dose2=Float64[], vaccine=String[],
                        lat=Float64[], long=Float64[], center_id=Int[],
                        state_name=String[], pin=Int[], address=String[], name=String[], session_id=String[],
                        slots=Array{String,1}[], min_age_limit=Int[],
@@ -238,6 +239,8 @@ function calendar_by_district(district_id::Int, date::String)
                 push!(df.slots, Array{String,1}(sessiondata["slots"]))
                 push!(df.date, sessiondata["date"])
                 push!(df.available_capacity, sessiondata["available_capacity"])
+                push!(df.available_capacity_dose1, sessiondata["available_capacity_dose1"])
+                push!(df.available_capacity_dose2, sessiondata["available_capacity_dose2"])
                 push!(df.min_age_limit, sessiondata["min_age_limit"])
                 push!(df.vaccine, sessiondata["vaccine"])
                 # sessiondata END 
@@ -263,7 +266,8 @@ function calendar_by_district_brief(district_id::Int, date::String)
 
         df = DataFrame(center_id=Int[],
                        state_name=String[], pin=Int[], name=String[],
-                       date=Dates.Date[], available_capacity=Float64[], min_age_limit=Int[],
+                       date=Dates.Date[], available_capacity=Float64[], available_capacity_dose1=Float64[], 
+                       available_capacity_dose2=Float64[], min_age_limit=Int[],
                        vaccine=String[], district_name=String[])
                        nrows = size(datadict)[1]
         for i in 1:nrows 
@@ -278,6 +282,8 @@ function calendar_by_district_brief(district_id::Int, date::String)
                 # sessiondata 
                 push!(df.date, Date(sessiondata["date"],"dd-mm-yyyy"))
                 push!(df.available_capacity, sessiondata["available_capacity"])
+                push!(df.available_capacity_dose1, sessiondata["available_capacity_dose1"])
+                push!(df.available_capacity_dose2, sessiondata["available_capacity_dose2"])
                 push!(df.min_age_limit, sessiondata["min_age_limit"])
                 push!(df.vaccine, sessiondata["vaccine"])
                 # sessiondata END 
