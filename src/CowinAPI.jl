@@ -10,6 +10,8 @@ export calendar_by_district_brief
 
 export stateID
 
+stateID = Dict("Punjab" => 28,"Telangana" => 32,"Bihar" => 5,"Chandigarh" => 6,"Chhattisgarh" => 7,"Jammu and Kashmir" => 14,"Lakshadweep" => 19,"Nagaland" => 25,"Tripura" => 33,"Gujarat" => 11,"Madhya Pradesh" => 20,"Goa" => 10,"Ladakh" => 18,"Odisha" => 26,"Puducherry" => 27,"Tamil Nadu" => 31,"Rajasthan" => 29,"Mizoram" => 24,"Karnataka" => 16,"Jharkhand" => 15,"Himachal Pradesh" => 13,"Assam" => 4,"Haryana" => 12,"Meghalaya" => 23,"Andhra Pradesh" => 2,"Sikkim" => 30,"Delhi" => 9,"West Bengal" => 36,"Daman and Diu" => 37,"Uttarakhand" => 35,"Dadra and Nagar Haveli" => 8,"Manipur" => 22,"Uttar Pradesh" => 34,"Arunachal Pradesh" => 3,"Maharashtra" => 21,"Kerala" => 17,"Andaman and Nicobar Islands" => 1)
+
 function make_API_call(url::String)
     try
         response = HTTP.get(url)
@@ -52,7 +54,7 @@ function get_state_ids()
     end 
 end 
 
-stateID = get_state_ids()
+#stateID = get_state_ids()
 
 function get_districts(state::String)
     state_id = stateID[state] 
